@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
             val message = editMessage.text.toString().trim()
 
             if (phone.isNotEmpty()) {
-                // Remove caracteres não numéricos
                 val cleanPhone = phone.replace(Regex("[^0-9]"), "")
 
-                // Monta a URL do WhatsApp
                 val url = if (message.isNotEmpty()) {
                     "https://wa.me/55$cleanPhone?text=${Uri.encode(message)}"
                 } else {
@@ -36,7 +34,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(url)
 
-                // Abre o WhatsApp (se instalado)
                 if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
                 }
